@@ -9,13 +9,13 @@ import re
 # Define API version and service name
 api_service_name = "youtube"
 api_version = "v3"
-api_key="AIzaSyCn6NuqfEJBwYMjroLCbHNmIpLeABBBaDk"
+api_key="api key"
 
 youtube = googleapiclient.discovery.build(api_service_name, api_version, developerKey=api_key)
 
 #Function to fetch the data from MYSQL Database
 def fetch_data(query):
-    mydb = mysql.connector.connect(host="localhost", user="root", password="Karan@1122", database="youtube_data")
+    mydb = mysql.connector.connect(host="localhost", user="root", password="", database="youtube_data")
     df = pd.read_sql(query, mydb)
     mydb.close()
     return df
@@ -86,7 +86,7 @@ def execute_query(question):
 #Function to fetch the channel details using API key
 def fetch_channel_data(newchannel_id):
     try:
-        mydb = mysql.connector.connect(host="localhost", user="root", password="Karan@1122", database="youtube_data")
+        mydb = mysql.connector.connect(host="localhost", user="root", password="", database="youtube_data")
         cursor = mydb.cursor()
         cursor.execute("SELECT * FROM channels WHERE channel_id = %s", (newchannel_id,))
         existing_channel = cursor.fetchone()
